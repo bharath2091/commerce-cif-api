@@ -59,7 +59,7 @@ function addProperties(properties, requiredProperties, clazz) {
     let props = objectWithSortedKeys(properties);
     _.forEach(props, function(property, name) {
 
-        var type = getType(property);
+        let type = getType(property);
         if (type == 'array' && property.items) {
             type = getType(property.items) + '[]';
         }
@@ -79,7 +79,7 @@ function addProperties(properties, requiredProperties, clazz) {
 function addImports(classname, properties, swagger) {
     let types = new Set();
     _.forEach(properties, function(property, name) {
-        var type = getType(property);
+        let type = getType(property);
         if (type == 'array' && property.items) {
             type = getType(property.items);
         }
@@ -93,14 +93,14 @@ function addImports(classname, properties, swagger) {
 }
 
 function getParentClass(allOf) {
-    var parts = allOf['$ref'].split('/');
+    let parts = allOf['$ref'].split('/');
     return parts[parts.length - 1];
 }
 
 function getType(object) {
-    var type = object.type;
+    let type = object.type;
     if (!type && object['$ref']) {
-        var parts = object['$ref'].split('/');
+        let parts = object['$ref'].split('/');
         type = parts[parts.length - 1];
     }
     return type;

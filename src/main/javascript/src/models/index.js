@@ -25,8 +25,8 @@ if (!fs.existsSync(jsFolder)) {
 }
 
 // Generate package.json
-var modelsPackageJson = fs.readFileSync(__dirname + '/models-package.json', 'utf-8').replace('VERSION_PLACEHOLDER', escape(swagger.info.version));
-var packageJsonFile = fs.openSync(jsFolder + '/package.json', 'w');
+let modelsPackageJson = fs.readFileSync(__dirname + '/models-package.json', 'utf-8').replace('VERSION_PLACEHOLDER', escape(swagger.info.version));
+let packageJsonFile = fs.openSync(jsFolder + '/package.json', 'w');
 fs.appendFileSync(packageJsonFile, modelsPackageJson);
 
 let classes = [];
@@ -40,7 +40,7 @@ _.forEach(swagger.definitions, function(definition, classname) {
 // Generate index file for model package
 let indexTemplate = fs.readFileSync(__dirname + '/index.hbs', 'utf8');
 let compiledTemplate = handlebars.compile(indexTemplate, {noEscape: true});
-var index = fs.openSync(jsFolder + '/index.js', 'w');
+let index = fs.openSync(jsFolder + '/index.js', 'w');
 fs.appendFileSync(index, compiledTemplate({version: swagger.info.version, classes: classes}));
 
 // Add OW package name to all "operationId" fields
