@@ -30,7 +30,7 @@ function generateNginxConfig(swagger) {
     let context = {
         version: swagger.info.version,
         locations: locations
-    }
+    };
 
     return compiledTemplate(context);
 }
@@ -93,7 +93,7 @@ function appendNginxConfig(endpoints, path, swagger) {
         path: location,
         rejectedMethods: rejectedMethods,
         actions: actions
-    })
+    });
 }
 
 function createActionUrl(action, pathVariables) {
